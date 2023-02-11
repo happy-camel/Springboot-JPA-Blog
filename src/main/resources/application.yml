@@ -1,6 +1,42 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /blog
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
 spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
     username: cos
     password: cos1234
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+#      create=프로젝트 재실행시 테이블 새로 생성, update, none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#        엔티티 만들때(테이블만들때) 변수명 그대로 데이터베이스에 필드로 넣어준다(카멜표기법)
+#      스프링피지컬네이밍스트레티지 전략쓰면(다른전략) 카멜표기법을 스네이크표기법으로 바꿔버린다
+      use-new-id-generator-mappings: false
+#      false = jpa가 사용하는 기본넘버링 전략을 따라가지않는다
+#      true = jpa가 사용하는 기본넘버링 전략을 따라간다
+    show-sql: true
+#    콘솔창에 sql보여줌
+    properties:
+      hibernate.format_sql: true
+#      콘솔창에 정렬되서 출력됨
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
