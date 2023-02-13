@@ -109,7 +109,7 @@ public class DummyControllerTest {
 //                return new User(); //빈 객체를 user에 넣어줌
 //            }
 //        });
-        //요청 - 웹브라우자
+        //요청 - 웹브라우저
         //user객체 = 자바 오브젝트
         //웹브라우저 이해못하니 변환 ->json (Gson라이브러리)
         //스프링부트 = 메세지컨버터가 응답시 자동작동
