@@ -17,18 +17,18 @@ public class UserApiController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/api/user")
+    @PostMapping("/auth/joinProc")
     public ResponseDto<Integer> save(@RequestBody User user){ //username, password, email
         System.out.println("UserApiController : save 호출됨");
-
 //        실제로 DB에 insert하고 아래에서 return이 되면 된다
         user.setRole(RoleType.USER);
         //디펜던시인젝션받아서 사용
-        int result = userService.회원가입(user);
-        return new ResponseDto<Integer>(HttpStatus.OK.value(),result);
+        userService.회원가입(user);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
         //자바오브젝트를 JSON으로 변환해서리턴(Jackson라이브러리가 실행)
     }
 
+//      전통적 로그인방식-사용안할꺼. 시큐리티로 할꺼라서
 //    @PostMapping("/api/user/login")
 //    public ResponseDto<Integer> login(@RequestBody User user, HttpSession session){
 //        System.out.println("UserApiController : login 호출됨");

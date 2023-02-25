@@ -12,6 +12,7 @@
   </div>
 </div>
 </div>
+
 <div class="container">
 <div class="card m-2">
   <div class="card-body">
@@ -20,6 +21,7 @@
   </div>
 </div>
 </div>
+
 <div class="container">
 <div class="card m-2">
   <div class="card-body">
@@ -28,4 +30,5 @@
   </div>
 </div>
 </div>
+
 <%@ include file="layout/footer.jsp"%>
