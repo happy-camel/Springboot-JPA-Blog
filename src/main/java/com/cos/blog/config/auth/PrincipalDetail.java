@@ -1,6 +1,8 @@
 package com.cos.blog.config.auth;
 
 import com.cos.blog.model.User;
+import lombok.Data;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,6 +11,7 @@ import java.util.Collection;
 
 // 로그인 완료시 UserDetails타입의 PrincipalDetail을
 // 스프링 시큐리티 세션저장소에 저장
+@Getter
 public class PrincipalDetail implements UserDetails { //implements시 오버라이드 해줘야됨(재정의)
     private User user; //콤포지션(객체를 품고있는것). extends는 상속
 

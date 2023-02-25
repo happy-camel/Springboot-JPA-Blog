@@ -25,12 +25,12 @@ public class Board {
     private String title;
     @Lob //대용량 데이터
     private String content;//섬머노트 라이브러리 -> 글이 디자인되서 들어감-> <html>태그가 섞여서 용량이커짐
-    @ColumnDefault("0") //기본값
+//    @ColumnDefault("0") //기본값
     private int count; //조회수
     @ManyToOne(fetch = FetchType.EAGER) //Many = Board, user = one
     //board 테이블 셀렉시 user정보는 무조건 가져올게 (하나밖에없으니까.) 기본전략
     @JoinColumn(name="userId")
-    private User userId; //DB는 오브젝트저장못함. FK, 자바는 오브젝트 저장가능
+    private User user; //DB는 오브젝트저장못함. FK, 자바는 오브젝트 저장가능
 //    자바에서 데이터베이스 자료형에 맞춰서 테이블 생성해서 원래는키값을(int user)저장해야하는데
 //    jpa에서는 그대로 오브젝트 써도됨
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)

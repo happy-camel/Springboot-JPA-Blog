@@ -10,10 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BoardController {
 
     @GetMapping({"", "/"})//컨트롤러에서 세션을 어떻게 찾?
-    public String index(@AuthenticationPrincipal PrincipalDetail principal) {
+    public String index() {
 //        WEB-INF/views/index.jsp
 
-        System.out.println("로그인 사용자 아이디 : " +principal.getUsername());
+//        System.out.println("로그인 사용자 아이디 : " +principal.getUsername());
         return "index";
+    }
+
+    @GetMapping("/board/saveForm")
+    public String saveForm() {
+        return "board/saveForm";
     }
 }
