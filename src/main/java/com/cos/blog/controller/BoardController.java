@@ -25,6 +25,11 @@ public class BoardController {
 
 //        System.out.println("로그인 사용자 아이디 : " +principal.getUsername());
         //index페이지로 boards값이 들어간다
+        int startPage = ((pageable.getPageNumber()-1) / 10) * 10 + 1;
+        pageable.getPageSize();
+        int endPage = startPage + 10 - 1  > pageable.getPageSize() ? pageable.getPageSize() : startPage + 10 - 1;
+        model.addAttribute("startPageNo", startPage);
+        model.addAttribute("endPageNo", endPage);
         model.addAttribute("boards", boardService.글목록(pageable));
         return "index";//컨트롤러는 리턴시 viewResolver작동
     }

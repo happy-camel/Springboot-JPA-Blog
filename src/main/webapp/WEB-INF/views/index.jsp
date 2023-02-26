@@ -25,6 +25,18 @@
 </c:otherwise>
 </c:choose>
 
+
+<c:forEach var="i" begin="${startPageNo}" end="${endPageNo}">
+            <c:choose>
+                <c:when test="${i eq boards.number+1}">
+                    <li class="page-item active"><a class="page-link" href="?page=${i -1}">${i}</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link" href="?page=${i -1}">${i}</a></li>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+
 <c:choose>
     <c:when test= "${boards.last}">
         <li class="page-item disabled"><a class="page-link" href="?page=${boards.number+1}">Next</a></li>
