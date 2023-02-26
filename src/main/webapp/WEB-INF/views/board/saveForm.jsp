@@ -4,7 +4,7 @@
 <%@ include file="../layout/header.jsp"%>
 
 
-<div class="container">
+<%-- <div class="container"> --%>
 
 <form>
   <div class="form-group">
