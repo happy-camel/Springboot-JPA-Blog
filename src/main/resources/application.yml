@@ -31,7 +31,7 @@ spring:
       use-new-id-generator-mappings: false
 #      false = jpa가 사용하는 기본넘버링 전략을 따라가지않는다
 #      true = jpa가 사용하는 기본넘버링 전략을 따라간다
-    show-sql: true
+    #show-sql: true
 #    콘솔창에 sql보여줌
     properties:
       hibernate.format_sql: true

@@ -3,6 +3,10 @@ let index = {
         $("#btn-save").on("click", ()=>{//function(){}안쓰고 ()=>{}쓰는건 this를 바인딩하기 위해서
             this.save();
         });
+        $("#btn-update").on("click", ()=>{//function(){}안쓰고 ()=>{}쓰는건 this를 바인딩하기 위해서
+            this.update();
+        });
+
     },
 
     save: function(){
@@ -32,6 +36,31 @@ let index = {
             alert(JSON.stringify(error));
         });
     },
+
+    update: function(){
+//        alert('user의 save함수 호출됨');
+        let data = {
+            id: $("#id").val(),
+            password: $("#password").val(),
+            email: $("#email").val()
+        };
+
+        $.ajax({
+            type:"PUT",
+            url:"/user",
+            data: JSON.stringify(data),
+            contentType:"application/json; charset=utf-8",//body데이터가 어떤타입인지(MIME)
+            dataType:"json"//응답은 기본적으로 버퍼로와서 String인데, 생긴게 JSON이면 javascript오브젝트로 변경해~
+        //회원가입 수행 요청
+        }).done(function(resp){
+            alert("회원수정이 완료되었습니다.");
+//            console.log(resp);
+            location.href="/";
+        }).fail(function(error){
+            alert(JSON.stringify(error));
+        });
+    },
+
 }
 
 index.init();

@@ -21,7 +21,7 @@ public class UserService {
     public void 회원가입(User user) {
 
         String rawPassword = user.getPassword(); //1234원문
-        String encPassword = encoder.encode(rawPassword); //해수화
+        String encPassword = encoder.encode(rawPassword); //해쉬화
         user.setPassword(encPassword);
         //디펜던시인젝션받아서 사용
         user.setRole(RoleType.USER);
@@ -41,4 +41,19 @@ public class UserService {
 //    public User 로그인(User user){
 //        return userRepository.findByUsernameAndPassword(user.getUsername(),user.getPassword());
 //    }
+    @Transactional
+    public void 회원수정(User user){
+//        수정시에는 Jpa영속성 컨텍스트에 User오브젝트를 영속화시키고
+//        영속화된 User오브젝트를 수정
+//        select로 db에서가져와서 영속화. 영속화된걸 수정하면 스프링이 자동으로 update문 날려줌
+        User persistance = userRepository.findById(user.getId()).orElseThrow(()->{
+            return new IllegalArgumentException("회원 찾기 실패");
+        });
+        String rawPassword = user.getPassword();
+        String encPassword = encoder.encode(rawPassword);
+        persistance.setPassword(encPassword);
+        persistance.setEmail(user.getEmail());
+        //회원수정함수종료=서비스종료=트잭종료==commit
+//        영속화된 persistance객체의 변화가 감지되면 더티체킹 = 자동 update
+    }
 }
