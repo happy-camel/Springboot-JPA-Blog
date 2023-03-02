@@ -40,3 +40,7 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+
+#cos1234를 통해서  oath를통해 회원가입하는아이디의 키를 통일하겠다
+cos:
+  key: cos1234
