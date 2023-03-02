@@ -39,6 +39,8 @@ public class User {
     private RoleType role; //실수안하도록 String 대신 RoleType을 넣어서 타입을 강제한다
 
     private String oauth; // kakao, google
+
+    // 내가 직접 시간을 넣으려면 Timestamp.valueOf(LocalDateTime.now())
     @CreationTimestamp //시간 자동입력
     private Timestamp createDate;
 

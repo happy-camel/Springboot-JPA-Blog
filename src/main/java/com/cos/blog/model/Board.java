@@ -1,5 +1,6 @@
 package com.cos.blog.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,12 +34,14 @@ public class Board {
     private User user; //DB는 오브젝트저장못함. FK, 자바는 오브젝트 저장가능
 //    자바에서 데이터베이스 자료형에 맞춰서 테이블 생성해서 원래는키값을(int user)저장해야하는데
 //    jpa에서는 그대로 오브젝트 써도됨
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 //     mappedBy= 연관관계의 주인이아니다 (FK가 아니에요) DB에 컬럼만들지마세요
 //    나는 그냥 보드 셀렉트할때 조인문으로 값얻기위해 필요한겁니다~
 //    mappedBy 뒤에 board는 필드이름 (Reply 클래스의 private Board board; 이부분)
     //조인컬럼은 필요없다 왜? 데이터베이스 제1정규화 위배
-    private List<Reply> reply;
+    @JsonIgnoreProperties({"board"})
+    @OrderBy("id desc")
+    private List<Reply> replys;
     @CreationTimestamp //데이터가 업데이트나 인서트될때 자동으로 현재시간이 들어온다
     private Timestamp createDate;
 
